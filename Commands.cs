@@ -56,6 +56,12 @@ public static class Commands
             Plugin.Log.LogError("Command not found: \"" + cmdName + "\"");
             return;
         }
+        
+        if (((ModdedCommand) cmdMethod.GetCustomAttributes(typeof(ModdedCommand), true)[0]).disabled)
+        {
+            Plugin.Log.LogError("Command \"" + cmdName + "\" is disabled!");
+            return;
+        }
 
         var param = cmdMethod.GetParameters().Select(p => p.ParameterType).ToArray();
         var sendSuccess = true;
