@@ -15,7 +15,7 @@ public class Plugin : BasePlugin
 {
     private const string Guid = "captnced.ConsoleCommands";
     private const string Name = "ConsoleCommands";
-    private const string Version = "1.0.0";
+    private const string Version = "1.0.1";
     internal new static ManualLogSource Log;
     internal static bool enabled = true;
 

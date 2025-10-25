@@ -26,8 +26,14 @@ public static class Console
                 "Canvas/WindowManagerCenterOption/UI Window Save Game/Container/ContentTop/New Save/Border"),
             consoleObject.transform.FindChild("InputField"));
         consoleObject.transform.FindChild("InputField/Text Area/Placeholder").gameObject.SetActive(false);
+        var rect = consoleObject.gameObject.GetComponent<RectTransform>();
+        rect.anchorMin = new Vector2(0, 0);
+        rect.anchorMax = new Vector2(0, 0);
+        rect.anchoredPosition = new Vector2(0, 0);
         input = consoleObject.FindChild("InputField").GetComponent<TMP_InputField>();
-        input.GetComponent<RectTransform>().sizeDelta = new Vector2(-250, 30);
+        var inRect = input.GetComponent<RectTransform>();
+        inRect.sizeDelta = new Vector2(-250, 30);
+        inRect.anchoredPosition = new Vector2(165, 20);
         input.textComponent.alignment = TextAlignmentOptions.Left;
         input.textComponent.fontSize = 14;
         input.textComponent.fontStyle = FontStyles.Normal;
@@ -43,8 +49,6 @@ public static class Console
         if (!Plugin.enabled) return;
         if (escMenu.enabled) return;
         if (consoleObject == null) inGameListener();
-        consoleObject.gameObject.GetComponent<RectTransform>().anchoredPosition =
-            new Vector2(-(Screen.width / 2 - 164), -(Screen.height - 62));
         consoleObject.gameObject.SetActive(true);
         input.ActivateInputField();
         lockHandle = GameInputLockAll.CreateLock();
